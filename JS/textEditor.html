@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Text Editor</title>
+  </head>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    .editor {
+      border: 1px solid black;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #f0f0f0;
+    }
+
+    .editor button,
+    .editor select {
+      padding: 10px 15px;
+      border: none;
+      background-color: rgb(154, 153, 153);
+      color: #fff;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .editor button:hover,
+    .editor select:hover {
+      background-color: orange;
+    }
+
+    textarea {
+      margin-top: 20px;
+      width: 70%;
+      height: 200px;
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      resize: none;
+    }
+  </style>
+  <body>
+    <div class="editor">
+      <button style="font-weight: bolder" id="bold">Bold</button>
+      <button style="font-style: italic" id="italic">Italic</button>
+      <button id="underline">Underline</button>
+      <button id="max">A+</button>
+      <button id="min">A-</button>
+      <button id="color">Color</button>
+      <select id="font-family">
+        <option value="Calibri">Calibri</option>
+        <option value="Courier New">Courier New</option>
+        <option value="Times New Roman">Times New Roman</option>
+        <option value="Gill Sans">Gill Sans</option>
+        <option value="Verdana">Verdana</option>
+      </select>
+    </div>
+
+    <textarea id="text"></textarea>
+
+    <script>
+      const bold = document.getElementById("bold");
+      const italic = document.getElementById("italic");
+      const incriment = document.getElementById("max");
+      const decriment = document.getElementById("min");
+      const color = document.getElementById("color");
+      const text = document.getElementById("text");
+      const fontFamily = document.getElementById('font-family');
+
+      bold.addEventListener("click", () => {
+        if (text.style.fontWeight == "bolder") {
+          text.style.fontWeight = "normal";
+        } else {
+          text.style.fontWeight = "bolder";
+        }
+      });
+
+      italic.addEventListener("click", () => {
+        if (text.style.fontStyle == "italic") {
+          text.style.fontStyle = "normal";
+        } else {
+          text.style.fontStyle = "italic";
+        }
+      });
+
+      underline.addEventListener("click", () => {
+        if (text.style.textDecoration == "underline") {
+          text.style.textDecoration = "none";
+        } else {
+          text.style.textDecoration = "underline";
+        }
+      });
+
+      max.addEventListener("click", () => {
+        text.style.fontSize =
+          (parseFloat(text.style.fontSize) || 16) + 2 + "px";
+      });
+
+      min.addEventListener("click", () => {
+        text.style.fontSize =
+          (parseFloat(text.style.fontSize) || 16) - 2 + "px";
+      });
+
+      fontFamily.addEventListener("change", () => {
+        text.style.fontFamily = fontFamily.value;
+      });
+    </script>
+  </body>
+</html>

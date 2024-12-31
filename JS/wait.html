@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stop watch</title>
+    <style>
+      .stop-watch {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin-top: 50px;
+      }
+      .time {
+        font-size: 40px;
+        margin: 20px 0;
+      }
+      button {
+        padding: 10px 20px;
+        font-size: 18px;
+        margin: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="stop-watch">
+      <button class="start">Start</button>
+      <button class="stop">Stop</button>
+      <button class="reset">reset</button>
+      <p class="time">00:00:00</p>
+    </div>
+
+    <script>
+      const timeDisplay = document.querySelector(".time");
+      const startButton = document.querySelector(".start");
+      const stopButton = document.querySelector(".stop");
+      const resetButton = document.querySelector(".reset");
+      const lapButton = document.createElement("button");
+      lapButton.innerText = "Laps";
+      document.querySelector(".stop-watch").appendChild(lapButton);
+
+      const lapDiv = document.createElement("div");
+      document.querySelector(".stop-watch").appendChild(lapDiv);
+
+      let hour = 0;
+      let min = 0;
+      let sec = 0;
+      let interval;
+
+      function updateTime() {
+        sec++;
+        if (sec == 60) {
+          min++;
+          sec = 0;
+        }
+        if (min == 60) { 
+          hour++;
+          min = 0;
+        }
+
+        let hourDisplay = hour < 10 ? `0${hour}` : hour;
+        let minDisplay = min < 10 ? `0${min}` : min;
+        let secDisplay = sec < 10 ? `0${sec}` : sec;
+
+        timeDisplay.textContent = `${hourDisplay}:${minDisplay}:${secDisplay}`;
+      }
+
+      startButton.addEventListener("click", () => {
+        
+        interval = setInterval(updateTime, 500);
+      });
+
+      stopButton.addEventListener("click", () => {
+        clearInterval(interval);
+      });
+
+      resetButton.addEventListener("click", () => {
+        clearInterval(interval);
+        timeDisplay.innerHTML = "00:00:00";
+        hour = 0;
+        min = 0;
+        sec = 0;
+        lapDiv.innerHTML = "";
+      });
+
+      lapButton.addEventListener("click", () => {
+        const lap = document.createElement("p");
+        lap.textContent = timeDisplay.textContent;
+        lapDiv.appendChild(lap);
+      });
+    </script>
+  </body>
+</html>

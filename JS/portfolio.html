@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    /* write your CSS code here */
+body{
+  background-color: rgba(125,125,125,0.1);
+}
+div{
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+}
+.container{
+  width: 80%;
+  background-color: rgba(175,175,175,0.1);
+  color: rgb(125,125,125);
+  margin: auto 0;
+  display: grid;
+  grid-template-columns: 250px 2fr;
+  grid-gap: 20px;
+}
+.favorites img{
+  height: 100px;
+  width: 80px;
+  float: left;
+  margin: 20px;
+}
+.favorites{
+  grid-row-start: 1;
+  grid-column-start: 2;
+  grid-row-end: 3;
+  grid-column-end: 4;
+}
+.social{
+  grid-row-start: 2;
+  grid-row-end: 3;
+  text-align: center;
+}
+.social img{
+  width: 30px;
+  height: 30px;
+  margin: 10px;
+}
+.footer{
+  text-align: justify;
+  grid-row-start: 4;
+  grid-column-start: 1;
+  grid-column-end: 4;
+}
+.user{
+  text-align: center;
+}
+.user img{
+  height: 100px;
+  width: 100px;
+  border: 2px solid rgb(170,170,170);
+}
+.user h2{
+  color: red;
+}
+.user button{
+  background-color: red;
+  color: white;
+  padding:10px;
+  border: none;
+  border-radius: 10px;
+}
+
+</style>
+<body>
+    <div class="container">
+        <div class="user">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJxA7pQkxq3NaB1gvfVi6jV25AHuY_CEjk-Q&usqp=CAU" src="user image" class="profile-pic"/>
+            <h2 >User Name</h2>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+            <button>Know More About Me</button>
+        </div>
+        <div class="social">
+            <h3>Connect With Me</h3>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRB-yTeflYezmWcxh06KbbreokOEw4pNaIIdpGxtTTwOSPlVUuL4bN8ErwZ4VWNq74_2EY&usqp=CAU" alt="facebook icon"/>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ73vFwQcvvtgnobJBp6IIEIs99HhE2jvd7Y6SzOxXIsOQoGhgdOw6imKVVqEjdCTrVj-I&usqp=CAU" alt="linkedin icon">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYuXpIHM-nwhspH7u22IWDQIidJ1V-A_w9uA&usqp=CAU" alt="twitter icon"/>
+        </div>
+        
+
+        <div class="favorites">
+            <h2>My Favorite Movie</h2>
+            <div class="movies">
+                <img src="https://lewagon.github.io/html-css-challenges/shared/images/space-odyssey.jpg" alt="Space Odyssey"/>
+                <h3>2001-Space Odyssey</h3>
+                <p>Humanity finds a mysterious, obviously artificial, object buried beneath the Lunar surface and, with the intelligent computer H.A.L. 9000, sets off on a quest.</p>
+            </div> 
+            <div class="movies">
+                <img src="https://lewagon.github.io/html-css-challenges/shared/images/alien.jpg" alt="Alien"/>
+                <h3>Alien</h3>
+                <p>The commercial vessel Nostromo receives a distress call from an unexplored planet. After searching for survivors, the crew heads home only to realize that a deadly bioform has joined them.</p>
+            </div> 
+            <div class="movies">
+                <img src="https://lewagon.github.io/html-css-challenges/shared/images/monsieur-hulot.jpg" alt="Monsieur Hulot"/>
+                <h3>Monsieur Hulot</h3>
+                <p>Monsieur Hulot comes to a beachside hotel for a vacation, where he accidentally (but good-naturedly) causes havoc.</p>
+            </div> 
+        </div>
+        <div class="footer">
+            <h3>About this page</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia vel temporibus omnis, rem, illo non modi earum quia ullam accusamus ducimus aut minima possimus odit cum hic ipsa id veniam!</p>
+        </div>
+    </div>
+</body>
+</html>

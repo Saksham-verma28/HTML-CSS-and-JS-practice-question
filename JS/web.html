@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pomodoro Timer</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f4f4f9;
+      color: #333;
+    }
+    button {
+      font-size: 18px;
+      margin: 10px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      background-color: #4caf50;
+      color: #fff;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    #time {
+      font-size: 48px;
+      margin-top: 20px;
+    }
+    h1 {
+      margin-top: 20px;
+      font-size: 24px;
+    }
+  </style>
+</head>
+<body>
+  <center>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+    <button id="reset">Reset</button>
+    <p id="time">25:00</p>
+    <h1 id="work">Work Time</h1>
+  </center>
+  <script>
+    const start = document.getElementById('start');
+    const stop = document.getElementById('stop');
+    const reset = document.getElementById('reset');
+    const h1 = document.getElementById('work');
+    const p = document.getElementById('time');
+
+    let min = 25;
+    let sec = 0;
+    let interval;
+
+    function updateTimerDisplay() {
+      const minDisplay = min < 10 ? `0${min}` : min;
+      const secDisplay = sec < 10 ? `0${sec}` : sec;
+      p.innerText = `${minDisplay}:${secDisplay}`;
+    }
+
+    function time() {
+      if (min === 0 && sec === 0) {
+        clearInterval(interval);
+        h1.innerText = "Break!";
+        return;
+      }
+
+      if (sec === 0) {
+        sec = 59;
+        min--;
+      } else {
+        sec--;
+      }
+
+      updateTimerDisplay();
+    }
+
+    start.addEventListener('click', () => {
+      clearInterval(interval); // Prevent multiple intervals
+      interval = setInterval(time, 1); // Set interval to 1 second
+    });
+
+    stop.addEventListener('click', () => {
+      clearInterval(interval);
+    });
+
+    reset.addEventListener('click', () => {
+      clearInterval(interval);
+      min = 25;
+      sec = 0;
+      h1.innerText = "Work Time";
+      updateTimerDisplay();
+    });
+
+    
+  </script>
+</body>
+</html>

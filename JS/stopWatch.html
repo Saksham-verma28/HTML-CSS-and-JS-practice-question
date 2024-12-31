@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <center>
+        <button id="start">Start</button>
+        <p id="watch">00:00:00</p>
+        <button id="stop">Stop</button>
+    </center>
+</body>
+<script>
+    const start = document.getElementById('start');
+    const timeDisplay = document.getElementById('watch');
+    let hr = 0;
+    let min = 0;
+    let sec = 0;
+    let interval;
+    function time() {
+
+
+        sec++;
+        if (sec == 60) {
+            min++;
+            sec = 0;
+        }
+        if (min == 60) {
+            hr++;
+            min = 0;
+        }
+
+        let hourDisplay = hr < 10 ? `0${hr}` : hr;
+        let minDisplay = min < 10 ? `0${min}` : min;
+        let secDisplay = sec < 10 ? `0${sec}` : sec;
+
+        timeDisplay.innerText = `${hourDisplay}:${minDisplay}:${secDisplay}`;
+    }
+
+    start.addEventListener('click', () => {
+       interval = setInterval(time, 500);
+    })
+</script>
+
+</html>

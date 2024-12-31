@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        background-color: #e2e2e2d8;
+    }
+    h1 {
+        text-align: center;
+        font-size: 3.5rem;
+        background-color: rgb(59, 59, 59);
+        color: white;
+        margin-top: -10px;
+        margin-left: -10px;
+        width: 95.6pc;
+    }
+
+    .quiz {
+        border: 1px solid #fff;
+        height: 350px;
+        width: 600px;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 15px;
+        background-color: white;
+    }
+</style>
+
+<body>
+
+    <h1>Quiz</h1>
+
+    <div class="quiz">
+        <h1 id="question"></h1>
+        <input type="checkbox"id="op1"><p></p>
+        <input type="checkbox"id="op2"><p></p>
+        <input type="checkbox"id="op3"><p></p>
+        <input type="checkbox"id="op4"><p></p>
+        <h1 id="ans"></h1>
+        <button id="Submit">Submit</button>
+    </div>
+</body>
+
+</html>

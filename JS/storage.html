@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        margin: 200px 600px ;
+    }
+    .list{
+       
+        height: 200px;
+        width: 200px; 
+        background-color: gray;
+        color: White;
+    }
+    #task{
+        border: 1px solid;
+        height: 200px;
+        width: 200px; 
+        margin-left: 201px;
+        border-left: none;
+        margin-top: -201.5px;
+    }h1{
+        margin-left: 140px;
+    }
+    #task h2{
+        text-align: center;
+    }
+    #task input{
+        margin-left: 12px;
+        height: 1.5pc;
+        margin-top: 20px;
+    }
+
+</style>
+<body>
+    <h1>To do app</h1>
+    <div class="list">
+        
+        
+    </div>
+    <div id="task">
+        <h2>Task</h2>
+        <input type="text" id="n">
+    </div>
+</body>
+<script>
+const input = document.getElementById('n');
+const ul = document.createElement('ul');
+document.querySelector('.list').append(ul);
+
+// Function to load tasks from local storage and display them
+function loadTasks() {
+    const tasks = JSON.parse(localStorage.getItem("task")) || [];
+    ul.innerHTML = ''; // Clear the list before rendering
+    tasks.forEach((task, index) => {
+        const li = document.createElement('li');
+        li.innerText = task;
+
+        // Create a delete button
+        const removeButton = document.createElement('button');
+        removeButton.innerText = 'X';
+        removeButton.style.color = 'red';
+        removeButton.style.border = 'none';
+        removeButton.style.cursor = 'pointer';
+        removeButton.style.marginLeft = '10px';
+
+        // Add event listener to delete the task
+        removeButton.addEventListener('click', () => {
+            removeTask(index); // Call remove function with the task index
+        });
+
+        li.append(removeButton);
+        ul.append(li);
+    });
+}
+
+// Function to remove a task by index
+function removeTask(index) {
+    const tasks = JSON.parse(localStorage.getItem("task")) || [];
+    tasks.splice(index, 1); // Remove the task from the array
+    localStorage.setItem('task', JSON.stringify(tasks)); // Update local storage
+    loadTasks(); // Re-render the task list
+}
+
+// Event listener to add tasks to local storage
+input.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+        if (input.value.trim() === '') return; // Ignore empty input
+
+        const tasks = JSON.parse(localStorage.getItem("task")) || [];
+        tasks.push(input.value.trim()); // Add the new task to the array
+        localStorage.setItem('task', JSON.stringify(tasks)); // Update local storage
+
+        input.value = ''; // Clear the input field
+        loadTasks(); // Re-render the task list
+    }
+});
+
+// Initial rendering of tasks
+loadTasks();
+
+
+    
+</script>
+</html>

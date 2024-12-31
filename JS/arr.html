@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Number List</title>
+</head>
+<body>
+    <input type="text" id="n" placeholder="Enter number...">
+    <button id="btn">Put</button>
+    <button id="pop">Pop</button>
+    <div id="field"></div>
+
+    <script>
+        const btn = document.getElementById('btn');
+        const arr = []; // Declare the array outside the event listener to persist data
+
+        btn.addEventListener('click', () => {
+            const input = document.getElementById('n').value;
+
+            // Ensure input is not empty
+            
+                arr.push(input); // Add the new number to the array
+
+                // Update the displayed list
+                const field = document.getElementById('field');
+                field.innerText = arr.join(', '); 
+                console.log(arr);
+                
+        });
+
+        
+        function remove(){
+          if(arr.length==0){
+            console.log("Empty!");
+            
+          }
+
+          else{
+            const input = document.getElementById('n').value;
+                const index = arr.indexOf(input);
+                arr.splice(index,1);
+                const field = document.getElementById('field');
+                field.innerText = arr.join(', ');
+                console.log(arr);
+                
+          }
+           
+           
+        }
+
+        document.getElementById('pop').addEventListener('click',remove);
+    </script>
+</body>
+</html>

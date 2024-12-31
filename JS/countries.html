@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .blue{
+            background-color: blue;
+            color: white;
+            width:100px;
+        }
+        .red{
+            background-color: red;
+            color: white;
+            width:80px;
+        }
+        #ok{
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+<body>
+    <div id="ok"></div>
+</body>
+<script>
+    const arr=["Australia","India","Japan","Brazil","China","USA","Koria","New Zeland","England","Nigeria","Jamika","Pakistan","Izril","Iraq","Canada","Mexico","Bangladesh","Srilanka","South Africa"]
+    const div = document.getElementById('ok');
+    arr.forEach((a,i)=>{
+        const p = document.createElement('p');
+        p.innerText=a;
+        if(i%2==0){
+            p.className="blue";
+        } 
+        else{
+            p.className="red";
+        }
+        div.append(p);
+    })
+</script>
+</html>

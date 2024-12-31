@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    table {
+        border-collapse: collapse;
+    }
+</style>
+<body>
+    <form>
+        <label>First Name: </label><input type="text" id="first"><br><br>
+        <label>Last Name: </label><input type="text" id="last"><br><br>
+        <button id="btn">Submit</button>
+    </form><br>
+    <table border="1">
+        <tr>
+            <th>First</th>
+            <th>Last</th>
+        </tr>
+        <tbody id="tbody"></tbody>
+    </table>
+
+    <script>
+        const btn = document.getElementById('btn');
+        const tbody = document.getElementById('tbody');
+
+        // Function to load data from local storage
+        function loadStoredData() {
+            const storedData = JSON.parse(localStorage.getItem('tableData')) || [];
+            storedData.forEach(row => {
+                addRowToTable(row.first, row.last); 
+            });
+        }
+
+        // Function to add a row to the table
+        function addRowToTable(first, last) {
+            const tr = document.createElement('tr');
+
+            const td1 = document.createElement('td');
+            td1.innerText = first;
+
+            const td2 = document.createElement('td');
+            td2.innerText = last;
+
+            tr.append(td1, td2);
+            tbody.append(tr);
+        }
+
+        // Event listener for the button
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            const first = document.getElementById('first').value.trim();
+            const last = document.getElementById('last').value.trim();
+
+        
+                // Add the row to the table
+                addRowToTable(first, last);
+
+                // Store the data in local storage
+                const storedData = JSON.parse(localStorage.getItem('tableData')) || [];
+                storedData.push({ first, last });
+                localStorage.setItem('tableData', JSON.stringify(storedData));
+
+                // Clear the input fields
+                document.getElementById('first').value = '';
+                document.getElementById('last').value = '';
+            
+        })
+
+        // Call the loadStoredData function immediately
+        loadStoredData();
+    </script>
+</body>
+</html>

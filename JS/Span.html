@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .blue{
+        background-color: blue;
+        color: white;
+        width: 25px;
+        text-align: center;
+    }
+    .red{
+        background-color: red;
+        color: white;
+        width: 25px;
+        text-align: center;
+    }
+    .display{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+</style>
+<body>
+    <label>Create span element: </label><input type="text" id="n">
+    <button id="btn">Create</button><br><br>
+    <div class="display">
+
+    </div>
+</body>
+<script>
+document.getElementById('btn').addEventListener('click',()=>{
+    const n = document.getElementById('n').value;
+    for(let i=1;i<=n;i++){
+        const span = document.createElement('span');
+        span.innerText=` ${i}`;
+        if(i%2!=0){
+            span.className="blue";
+        }
+        else{
+            span.className="red";
+        }
+        document.querySelector('.display').append(span);
+    }
+    
+})
+</script>
+</html>

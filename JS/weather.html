@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background Cover Fix</title>
+    <style>
+        html, body {
+            height: 100%; /* Ensure the body covers the viewport height */
+            margin: 0;    /* Remove default margin */
+            padding: 0;   /* Remove default padding */
+        }
+
+        body {
+            background-image: url('https://th.bing.com/th/id/OIP.p3lXyMdFzkN4SAHvqGQX1gAAAA?w=453&h=340&rs=1&pid=ImgDetMain');
+            background-repeat: no-repeat;
+            background-size: cover; /* Make the image cover the screen */
+            background-position: center; /* Center the image */
+        }
+
+        .weatherDiv {
+            border: 1px solid;
+            height: 400px;
+            width: 350px;
+            margin: 0 auto;
+            margin-top: 50px;
+            border-radius: 10px;
+            background-color: white; 
+        }
+        .weatherDiv h1{
+            text-align: center;
+            
+        }
+        .weatherDiv input{
+                margin-left: 50px;
+                height: 25px;
+                border-radius: 10px;
+                border: 1px dashed;
+        }
+        .weatherDiv button{
+            height: 25px;
+            border-radius: 10px;
+            border: none;
+            background-color: green;
+            color: white;
+            width: 60px;
+            cursor: pointer;
+        }
+        .weatherDiv button:hover{
+            background-color: rgb(4, 149, 4);
+        }
+        #report h4{
+                margin-left: 100px;
+                
+        }
+        #report h1{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="weatherDiv">
+        <h1>Weather App</h1>
+        <input type="text" id="place">
+        <button id="search">Search</button><br><br><br>
+        <div id="report"></div>
+    </div>
+    
+</body>
+<script>
+    
+    const btn = document.getElementById('search');
+    const name = document.createElement('h4');
+    const temprature = document.createElement('h4');
+    const humidity = document.createElement('h4');
+    const country = document.createElement('h4');
+   
+    async function weather(){
+        
+        const place = document.getElementById('place').value;
+        const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${place}&appid=10ed72a4956bcf8f75f39696cfc97b56&units=metric`);
+        const data = await response.json();
+        
+        if(response.ok){
+            
+            name.innerText=`Name: ${data.name} `
+            temprature.innerText=`Temprature: ${data.main.temp} degree`
+            humidity.innerText=`Humidity: ${data.main.humidity}`
+            country.innerText=`Country: ${data.sys.country}`
+    
+        document.getElementById('report').append(name,temprature,humidity,country);
+        }
+
+        else{
+            name.innerText="Place not found!"
+            document.getElementById('report').append(name)
+        }
+
+    }
+
+    btn.addEventListener('click',weather)
+</script>
+</html>
